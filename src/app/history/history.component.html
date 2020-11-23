@@ -1,0 +1,46 @@
+<!-- NAVBAR
+================================================== -->
+<nav Class="navbar navbar-expand-lg navbar-light tool">
+
+    <div class="container-fluid">
+  
+      <!-- Brand -->
+      <a class="navbar-brand band" routerLink="/">
+        AccuText
+        <img src="assets/logos/img-3.png" height="50px" alt="Logo">
+      </a>
+  
+        <!-- Button -->
+        <div>
+          <a routerLink="../home" class="navbar-btn btn btn-sm btn-outline-primary lift">
+            Home
+          </a>
+          &nbsp;
+          <a routerLink="../index" class="navbar-btn btn btn-sm btn-outline-primary lift">
+            Logout
+          </a>
+        </div>
+  
+      </div>
+  </nav>
+  <br/>
+  <div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Sender</th>
+            <th scope="col">Message</th>
+            <th scope="col">Reciever</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of collection">
+            <th>{{item.id}}</th>
+            <th>{{item.num}}</th>
+            <th>{{item.msg}}</th>
+            <th>{{item.file}}</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
