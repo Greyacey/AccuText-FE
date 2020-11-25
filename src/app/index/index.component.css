@@ -6,19 +6,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-  } 
-  .toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #ffffff;
-    color: #336699;
-    font-family: cursive;
-    font-size: 20px;
   }
   a.tool:hover{
     border-color: red;
