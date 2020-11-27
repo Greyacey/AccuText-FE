@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLinkActive } from '@angular/router';
-import { AcctextService } from '../acctext.service';
+import { Router } from '@angular/router';
+import { AccutextService } from '../accutext.service';
 
 @Component({
   selector: 'app-register',
@@ -9,12 +9,13 @@ import { AcctextService } from '../acctext.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private _router: Router, private accutext: AcctextService) { }
-  onSubmit(data)
-    {
-      console.warn(data)
-      this._router.navigate(['login'])
-    }
+  constructor(private _router: Router, private accutext: AccutextService) {
+  }
+
+  onSubmit(data) {
+    console.warn(data);
+    this._router.navigate(['login']);
+  }
 
   ngOnInit(): void {
   }

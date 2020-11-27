@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import{ AcctextService } from '../acctext.service'
-import * as XLSX from 'xlsx'
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
+import * as XLSX from 'xlsx';
+import { AccutextService } from '../accutext.service';
 
 @Component({
   selector: 'app-home-pg',
@@ -9,41 +11,51 @@ import * as XLSX from 'xlsx'
 })
 export class HomePgComponent implements OnInit {
 
-  data:[][];
-  constructor(private acctext:AcctextService) { }
-  onSubmit(test)
-  {
-    test.phoneNumbers = this.data
-    console.warn(test)
-    this.acctext.saveData(test).subscribe((result)=>{
-      console.warn("result is here", result)
-    })
-    
+  currentUser: any;
+  numbersArray: any = [];
+
+  constructor(private service: AccutextService, private  router: Router) {
+  }
+
+  onSubmit(formData) {
+    formData.phoneNumbers = this.numbersArray;
+
+    this.service.sendBulkSMS(formData).pipe(tap(data => {
+      console.log(data);
+    })).subscribe();
   }
 
   ngOnInit(): void {
-    
+    const user = localStorage.getItem('user');
+    if (!user) {
+      this.router.navigateByUrl('/login');
+    } else {
+      this.currentUser = JSON.parse(user);
+    }
   }
-  onFileChange(evt: any){
-    const target : DataTransfer = <DataTransfer>(evt.target);
 
-    if (target.files.length !== 1) throw new Error('Cannot use multile files');
+  onFileChange(evt: any) {
+    const target: DataTransfer = <DataTransfer> (evt.target);
+
+    if (target.files.length !== 1) {
+      throw new Error('Cannot use multile files');
+    }
 
     const reader: FileReader = new FileReader();
 
     reader.onload = (e: any) => {
       const bstr: string = e.target.result;
-      const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary'});
+      const wb: XLSX.WorkBook = XLSX.read(bstr, {type: 'binary'});
       const wsname: string = wb.SheetNames[0];
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
-      this.data = (XLSX.utils.sheet_to_json(ws, { header: 1}))
-      console.log(this.data)
-
+      const data = (XLSX.utils.sheet_to_json(ws, {header: 1}));
+      // @ts-ignore
+      this.numbersArray = data[0].map(d => d.toString());
     };
 
     reader.readAsBinaryString(target.files[0]);
 
   }
-  
+
 
 }

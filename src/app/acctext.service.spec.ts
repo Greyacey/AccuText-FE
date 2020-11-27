@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AcctextService } from './acctext.service';
+import { AccutextService } from './accutext.service';
 
 describe('AcctextService', () => {
-  let service: AcctextService;
+  let service: AccutextService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AcctextService);
+    service = TestBed.inject(AccutextService);
   });
 
   it('should be created', () => {
