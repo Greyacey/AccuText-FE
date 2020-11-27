@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 import * as XLSX from 'xlsx';
-import { AcctextService } from '../acctext.service';
+import { AccutextService } from '../accutext.service';
 
 @Component({
   selector: 'app-home-pg',
@@ -9,19 +11,27 @@ import { AcctextService } from '../acctext.service';
 })
 export class HomePgComponent implements OnInit {
 
-  data: [][];
+  currentUser: any;
+  numbersArray: any = [];
 
-  constructor(private acctext: AcctextService) {
+  constructor(private service: AccutextService, private  router: Router) {
   }
 
-  onSubmit(test) {
-    test.numfile = this.data;
-    console.warn(test);
+  onSubmit(formData) {
+    formData.phoneNumbers = this.numbersArray;
 
+    this.service.sendBulkSMS(formData).pipe(tap(data => {
+      console.log(data);
+    })).subscribe();
   }
 
   ngOnInit(): void {
-
+    const user = localStorage.getItem('user');
+    if (!user) {
+      this.router.navigateByUrl('/login');
+    } else {
+      this.currentUser = JSON.parse(user);
+    }
   }
 
   onFileChange(evt: any) {
@@ -38,9 +48,9 @@ export class HomePgComponent implements OnInit {
       const wb: XLSX.WorkBook = XLSX.read(bstr, {type: 'binary'});
       const wsname: string = wb.SheetNames[0];
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
-      this.data = (XLSX.utils.sheet_to_json(ws, {header: 1}));
-      console.log(this.data);
-
+      const data = (XLSX.utils.sheet_to_json(ws, {header: 1}));
+      // @ts-ignore
+      this.numbersArray = data[0].map(d => d.toString());
     };
 
     reader.readAsBinaryString(target.files[0]);

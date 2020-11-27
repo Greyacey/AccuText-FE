@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AcctextService } from '../acctext.service';
+import { AccutextService } from '../accutext.service';
 
 @Component({
   selector: 'app-history',
@@ -10,7 +10,7 @@ export class HistoryComponent implements OnInit {
 
   collection = {};
 
-  constructor(private accte: AcctextService) {
+  constructor(private accte: AccutextService) {
   }
 
   ngOnInit(): void {

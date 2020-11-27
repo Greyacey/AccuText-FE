@@ -12,14 +12,17 @@
 
     <!-- Button -->
     <div>
+      <span style="color: white">Hi, {{currentUser.firstName}}</span>
+      &nbsp;
+      &nbsp;
       <a class="navbar-btn btn btn-sm btn-outline-primary lift" routerLink="../history">
         History
       </a>
-      &nbsp;
+          &nbsp;
       <a class="navbar-btn btn btn-sm btn-outline-primary lift" routerLink="../index">
         Logout
       </a>
-      &nbsp;
+          &nbsp;
     </div>
 
   </div>
@@ -50,17 +53,17 @@
           <form #sendForm="ngForm" (ngSubmit)="onSubmit(sendForm.value)">
             <div class="form-group">
               <label>Sender Number</label>
-              <input #num="ngModel" class="form-control" name="usernum" ngModel ngModel placeholder="Enter Number" required type="text">
+              <input #num="ngModel" class="form-control" name="sender" ngModel ngModel placeholder="Enter Number" required type="text">
               <span *ngIf="num.invalid && num.touched" class="error">Number is Required</span>
             </div>
             <div class="form-group">
               <label>Message</label>
-              <textarea #msg="ngModel" class="form-control" name="msg" ngModel required rows="5"></textarea>
+              <textarea #msg="ngModel" class="form-control" name="text" ngModel required rows="5"></textarea>
               <span *ngIf="msg.invalid && msg.touched" class="error">Message is required </span>
             </div>
             <div class="form-group">
               <label>Upload CSV/Pdf of Phone Numbers</label>
-              <input #file="ngModel" (change)="onFileChange($event)" class="form-control-file" multiple="false" name="numfile" ngModel required type="file">
+              <input #file="ngModel" (change)="onFileChange($event)" class="form-control-file" multiple="false" name="phoneNumbers" ngModel required type="file">
               <span *ngIf="file.invalid && file.touched" class="error">Please upload Recieving numbers</span>
             </div>
             <button [disabled]="sendForm.invalid" class="btn btn-primary" type="submit">Submit</button>

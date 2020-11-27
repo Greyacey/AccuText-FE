@@ -1,18 +1,18 @@
 <!-- NAVBAR
 ================================================== -->
-<nav Class="navbar navbar-expand-lg navbar-light tool">
+<nav Class="navbar navbar-expand-lg navbar-light">
 
   <div class="container-fluid">
 
     <!-- Brand -->
-    <a class="navbar-brand band" routerLink="/">
+    <a class="navbar-brand" routerLink="/">
       AccuText
       <img alt="Logo" height="50px" src="assets/logos/img-3.png">
     </a>
 
     <!-- Button -->
     <div>
-      <a class="navbar-btn btn btn-sm btn-outline-primary lift" routerLink="../index">
+      <a class="navbar-btn btn btn-lg btn-outline-primary lift" routerLink="../index">
         Back</a>
       &nbsp;
     </div>
@@ -22,26 +22,25 @@
 <div class="container">
   <div class="content" role="main">
 
-    <!-- Highlight Card -->
-    <div class="card highlight-card card-large" style="width: 24rem;">
-      <p>Welcome to AccuText!</p>
+    <div class="alert alert-info w-50" *ngIf="showError">
+      {{message}}
     </div>
-    <div class="row pb-5 justify-content-center">
-      <div class="card-container">
-        &nbsp;&nbsp;&nbsp;
-        <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)" style="width: 24rem;">
+    <!-- Highlight Card -->
+    <div class="row justify-content-center">
+      <div class="card-container py-5">
+        <h2 Class="text-center text-uppercase"> Log In</h2><br/>
+        <form #userForm="ngForm" class="p-3" (ngSubmit)="loginUser()">
           <div class="form-group">
-            <h2 Class="text-center"> Log In</h2><br/>
             <label>Email address</label>
-            <input #email="ngModel" class="form-control" email name="useremail" ngModel placeholder="Enter email" required type="email">
-            <span *ngIf="email.invalid && email.touched" class="error">Email is not valid</span>
+            <input [(ngModel)]="loginData.email" class="form-control" name="email" #email placeholder="Enter email" required type="email">
+<!--            <span *ngIf="email.invalid && email.touched" class="error">Email is not valid</span>-->
 
           </div>
           <br/>
           <div class="form-group">
             <label>Password</label>
-            <input #password="ngModel" class="form-control" maxlength="12" minlength="4" name="password" ngModel placeholder="Password" required type="password">
-            <span *ngIf="password.invalid && password.touched" class="error">Password is not valid </span>
+            <input [(ngModel)]="loginData.password" class="form-control" maxlength="12" minlength="4" name="password" placeholder="Password" required type="password">
+<!--            <span *ngIf="password.invalid && password.touched" class="error">Password is not valid </span>-->
           </div>
           <button [disabled]="userForm.invalid" class="btn btn-primary" type="submit">Submit</button>
         </form>
@@ -55,12 +54,3 @@
     </svg>
   </div>
 </div> <!-- / .container -->
-<!-- CURVE -->
-<div class="position-relative">
-  <div class="shape shape-bottom shape-fluid-x svg-shim text-gray-200">
-    <svg fill="none" viewBox="0 0 2880 48" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"/>
-    </svg>
-  </div>
-</div>
-<router-outlet></router-outlet>
