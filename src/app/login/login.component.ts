@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLinkActive } from '@angular/router';
+//import { Router, RouterLinkActive } from '@angular/router';
+import { AcctextService } from '../acctext.service';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,7 @@ import { Router, RouterLinkActive } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
    
-  constructor(private _router: Router) { }
-
-  onSubmit(data)
-    {
-      console.warn(data)
-      this._router.navigate(['home'])
-    }
+  constructor(private accutext: AcctextService) { }
 
   ngOnInit(): void {
   }

@@ -13,8 +13,11 @@ export class HomePgComponent implements OnInit {
   constructor(private acctext:AcctextService) { }
   onSubmit(test)
   {
-    test.numfile = this.data
+    test.phoneNumbers = this.data
     console.warn(test)
+    this.acctext.saveData(test).subscribe((result)=>{
+      console.warn("result is here", result)
+    })
     
   }
 

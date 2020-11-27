@@ -4,6 +4,7 @@ import {HomePgComponent} from './home-pg/home-pg.component'
 import {HistoryComponent} from './history/history.component'
 import {LoginComponent} from './login/login.component'
 import {IndexComponent} from './index/index.component'
+import { RegisterComponent} from './register/register.component'
 const routes: Routes = [
   {
     component:HomePgComponent,
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     component:IndexComponent,
     path: 'index'
+  },
+  {
+    component:RegisterComponent,
+    path: 'cryptic_reg'
   },
   { path: '',   redirectTo: '/index', pathMatch: 'full' },
 ];
