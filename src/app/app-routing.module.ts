@@ -1,31 +1,33 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {HomePgComponent} from './home-pg/home-pg.component'
-import {HistoryComponent} from './history/history.component'
-import {LoginComponent} from './login/login.component'
-import {IndexComponent} from './index/index.component'
+import { RouterModule, Routes } from '@angular/router';
+import { HistoryComponent } from './history/history.component';
+import { HomePgComponent } from './home-pg/home-pg.component';
+import { IndexComponent } from './index/index.component';
+import { LoginComponent } from './login/login.component';
+
 const routes: Routes = [
   {
-    component:HomePgComponent,
-    path:'home'
+    component: HomePgComponent,
+    path: 'home'
   },
   {
-    component:HistoryComponent,
+    component: HistoryComponent,
     path: 'history'
   },
   {
-    component:LoginComponent,
+    component: LoginComponent,
     path: 'login'
   },
   {
-    component:IndexComponent,
+    component: IndexComponent,
     path: 'index'
   },
-  { path: '',   redirectTo: '/index', pathMatch: 'full' },
+  {path: '', redirectTo: '/index', pathMatch: 'full'}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
