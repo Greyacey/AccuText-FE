@@ -36,10 +36,11 @@ input.ng-valid {
 
 .card-container {
   background-color: #fafafa;
-  display: flex;
-  flex-wrap: wrap;
+  /*display: flex;*/
+  /*flex-wrap: wrap;*/
   justify-content: center;
-  margin-top: -14px;
+  width: 450px;
+  /*margin-top: -14px;*/
 }
 
 .card {

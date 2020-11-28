@@ -8,16 +8,11 @@ import { AccutextService } from '../accutext.service';
 })
 export class HistoryComponent implements OnInit {
 
-  collection = {};
-
   constructor(private accte: AccutextService) {
   }
 
   ngOnInit(): void {
-    this.accte.getList().subscribe((result) => {
-      console.warn(result);
-      this.collection = result;
-    });
+
   }
 
 }

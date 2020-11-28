@@ -14,6 +14,13 @@ export class AccutextService {
   constructor(private http: HttpClient) {
   }
 
+  regUser(first_name, last_name, phone_number,email, password): Observable<any> {
+    const payload = {
+      first_name, last_name, phone_number, email, password
+    };
+    return this.http.post<Observable<any>>(this.apiUrl + '/users', payload);
+  }
+
   loginUser(email, password): Observable<any> {
     const payload = {
       email, password

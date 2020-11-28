@@ -21,13 +21,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private service: AccutextService, private router: Router) {
   }
-
-  onClick(data)
-    {
-      console.warn(data)
-      //this._router.navigate(['home'])
-    }
-
   ngOnInit(): void {
   }
 
