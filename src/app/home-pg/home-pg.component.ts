@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import * as XLSX from 'xlsx';
 import { AccutextService } from '../accutext.service';
 
@@ -11,6 +12,8 @@ import { AccutextService } from '../accutext.service';
 })
 export class HomePgComponent implements OnInit {
 
+  showError = false;
+  message: string;
   currentUser: any;
   numbersArray: any = [];
 
@@ -22,6 +25,15 @@ export class HomePgComponent implements OnInit {
 
     this.service.sendBulkSMS(formData).pipe(tap(data => {
       console.log(data);
+      this.message = 'data.Message';
+        this.showError = true;
+
+        this.router.navigateByUrl('/home');
+    }), catchError(err => {
+      console.log(err);
+      this.message = "Invalid Number(s)";
+      this.showError = true;
+      return of(err);
     })).subscribe();
   }
 
