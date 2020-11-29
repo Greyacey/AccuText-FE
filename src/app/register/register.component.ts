@@ -27,8 +27,8 @@ export class RegisterComponent implements OnInit {
   }
   
   regUser() {
-    if (this.loginData.email && this.loginData.password && this.loginData.first_name && this.loginData.last_name && this.loginData.phone_name) {
-      this.service.regUser(this.loginData.first_name, this.loginData.last_name, this.loginData.phone_name, this.loginData.email, this.loginData.password).pipe(tap(data => {
+    if (this.loginData.email && this.loginData.password && this.loginData.first_name && this.loginData.last_name && this.loginData.phone_number) {
+      this.service.regUser(this.loginData.first_name, this.loginData.last_name, this.loginData.phone_number, this.loginData.email, this.loginData.password).pipe(tap(data => {
         const user = data.body;
 
         localStorage.setItem('user', JSON.stringify(user));
