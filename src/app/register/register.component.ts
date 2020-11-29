@@ -18,12 +18,19 @@ export class RegisterComponent implements OnInit {
     password: ''
   };
 
+  currentUser: any;
   showError = false;
   message: string;
 
   constructor(private router: Router, private service: AccutextService) {
   }
   ngOnInit(): void {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      this.router.navigateByUrl('/login');
+    } else {
+      this.currentUser = JSON.parse(user);
+    }
   }
   
   regUser() {

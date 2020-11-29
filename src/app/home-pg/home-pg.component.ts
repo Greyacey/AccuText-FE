@@ -24,13 +24,10 @@ export class HomePgComponent implements OnInit {
     formData.phoneNumbers = this.numbersArray;
 
     this.service.sendBulkSMS(formData).pipe(tap(data => {
-      console.log(data);
       this.message = 'data.Message';
         this.showError = true;
-
         this.router.navigateByUrl('/home');
     }), catchError(err => {
-      console.log(err);
       this.message = "Invalid Number(s)";
       this.showError = true;
       return of(err);
