@@ -1,34 +1,29 @@
 <!-- NAVBAR
 ================================================== -->
 <nav Class="navbar navbar-expand-lg navbar-light tool">
-
   <div class="container-fluid">
-
-    <!-- Brand -->
-    <a class="navbar-brand band" routerLink="/">
-      AccuText
-      <img alt="Logo" height="50px" src="assets/logos/img-3.png">
-    </a>
-
-    <!-- Button -->
-    <div>
-      <span style="color: white">Hi, {{currentUser.firstName}}</span>
-      &nbsp;
-      &nbsp;
-      <a class="navbar-btn btn btn-sm btn-outline-primary lift" routerLink="../cryptic_reg">
-        Register
+      <!-- Brand -->
+      <a class="navbar-brand band" routerLink="/">
+        AccuText
+        <img alt="Logo" height="50px" src="assets/logos/img-3.png">
       </a>
-      &nbsp;
-      <a class="navbar-btn btn btn-sm btn-outline-primary lift" routerLink="../history">
-        History
-      </a>
-          &nbsp;
-      <a class="navbar-btn btn btn-sm btn-outline-primary lift" routerLink="../index">
-        Logout
-      </a>
-          &nbsp;
-    </div>
-
+      <!-- Button -->
+    <form #logout="ngForm" (ngSubmit)="logoutUser()">
+      <div>
+        <span style="color: white">Hi, {{currentUser.firstName}}</span>
+        &nbsp;
+        &nbsp;
+        <a class="navbar-btn btn btn-sm btn-outline-primary lift" routerLink="../cryptic_reg">
+          Register
+        </a>
+        &nbsp;
+        <a class="navbar-btn btn btn-sm btn-outline-primary lift" routerLink="../history">
+          History
+        </a>&nbsp;
+        <a ><button type= "submit" class="navbar-btn btn btn-sm btn-outline-primary lift">Logout</button></a>
+        &nbsp;
+      </div>
+    </form>
   </div>
 </nav>
 <!-- HOW IT WORKS

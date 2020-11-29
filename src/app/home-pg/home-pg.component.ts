@@ -56,6 +56,10 @@ export class HomePgComponent implements OnInit {
     reader.readAsBinaryString(target.files[0]);
 
   }
+  logoutUser(){
+    localStorage.clear();
+    this.router.navigateByUrl('/index');
+  }
 
 
 }
